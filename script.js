@@ -67,6 +67,7 @@ function async runRecognizer() {
 	let results = Array.from(rawResults);
 
 	console.log(results);
+	console.log(rawResults);
 
 }
 
