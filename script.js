@@ -21,6 +21,7 @@ function drawOnCanvas(e) {
 		ctx.beginPath();
 		ctx.moveTo(x, y);
 		ctx.lineTo(e.offsetX, e.offsetY);
+		ctx.closePath();
 		ctx.stroke();
 
 		x = e.offsetX;
@@ -61,20 +62,65 @@ function clearCanvas() {
 
 //predict digit for drawing
 async function runRecognizer() {
-	let input = preprocessCanvas();
-	console.log(input.shape);
+	let input = preprocessCanvas(ctx);
+
+	input.print();
+	console.log(input);
+
 	let rawResults = await model.predict(input).data();
 	let results = Array.from(rawResults);
 
 	console.log(results);
-	console.log(rawResults);
 
 }
 
 //preprocessing the canvas drawing
-function preprocessCanvas() {
-	let tensor = tf.browser.fromPixels(canvas).resizeNearestNeighbor([28, 28]).mean(2).expandDims().toFloat();
+function preprocessCanvas(img) {
+	let data = img.getImageData(0, 0, 280, 280);
+
+	let pxData = [];
+	for(let i = 3; i < 313600; i += 4) {
+		pxData.push(data.data[i]);
+	}
+
+	let avg1Data = [];
+	for(let j = 0; j < 280; j++) {
+		let temp = [];
+		for(let i = 0; i < 28; i++) {
+			let avg = 0;
+			for(let k = 0; k < 10; k++) {
+				avg += pxData[j * 280 + i * 10 + k];
+			}
+			avg = avg / 10.0;
+			temp.push(avg);
+		}
+		avg1Data.push(temp);
+	}
 	
-	//changing to black background and white drawing
-	return tensor.div(255.0).sub(1.0).mul(-1.0);
+	let avgData = [];
+	for(let i = 0; i < 28; i++) {
+		let temp = [];
+		for(let j = 0; j < 28; j++) {
+			let avg = 0;
+			for(let k = 0; k < 10; k++) {
+				avg += avg1Data[j * 10 + k][i];
+			}
+			avg = avg / 10.0;
+			temp.push(avg);
+		}
+		avgData.push(temp);
+	}
+
+	let resultData = [];
+	for(let i = 0; i < 28; i++) {
+		let temp = [];
+		for(let j = 0; j < 28; j++) {
+			let d = avgData[j][i];
+			d = d / 255.0;
+			temp.push(d);
+		}
+		resultData.push(temp);
+	}
+
+	return tf.tensor([resultData]);
 }
