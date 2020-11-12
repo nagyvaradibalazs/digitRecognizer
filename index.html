@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+	<link rel="icon" href="icon.png">
+	<title>Handwritten Digits Recognizer</title>
+</head>
+<body>
+	<div class="title">
+		<h1>Handwritten Digits Recognizer</h1>
+		<p>Draw a digit on the canvas, then click Go to predict the digit. For the most accurate result, use the whole canvas to draw!</p>
+	</div>
+	<div class="content">
+		<div class="left-side">
+			<canvas id="cv" width="280" height="280"></canvas>
+			<div class="main-buttons">
+				<a class="clear-button" onclick="clearCanvas()">Clear</a>
+				<a class="go-button" onclick="runRecognizer()">Go</a>
+			</div>
+		</div>
+		<div class="container">
+			<!-- elements by JS -->
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

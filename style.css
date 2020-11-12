@@ -1,0 +1,93 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: black;
+	background: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
+
+.title {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.title p {
+	margin-top: 10px;
+	position: absolute;
+	text-align: left;
+	left: calc(50% - 250px);
+	font-size: 14px;
+	width: 500px;
+}
+
+.content {
+	display: flex;
+	margin-top: 100px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 450px;
+	height: 350px;
+	margin-left: 50px;
+}
+
+.left-side {
+	width: 300px;
+	height: 350px;
+}
+
+canvas {
+	margin: 0 10px;
+	border-radius: 10px;
+	border: 2px solid black;
+	cursor: crosshair;
+}
+
+.main-buttons {
+	margin: 20px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.clear-button {
+	cursor: pointer;
+	margin-right: 50px;
+	background: tomato;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.go-button {
+	cursor: pointer;
+	margin-left: 30px;
+	background: tomato;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.array-element {
+	position: absolute;
+	background: tomato;
+	left: 0;
+	bottom: calc(100% - 485px);
+	border-radius: 10px;
+	transition: all 0.5s ease;
+}
+
+.number-label {
+	position: absolute;
+	bottom: -40px;
+	left: 8px;
+	font-size: 24px;
+}
