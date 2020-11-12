@@ -63,7 +63,7 @@ function clearCanvas() {
 async function runRecognizer() {
 	let input = preprocessCanvas();
 	
-	let rawResults = await model.predict(tensor).data();
+	let rawResults = await model.predict(input).data();
 	let results = Array.from(rawResults);
 
 	console.log(results);
