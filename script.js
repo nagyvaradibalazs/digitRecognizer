@@ -1,5 +1,4 @@
 //variables and constants
-var probabilityArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var model = undefined;
 
 const container = document.getElementsByClassName("container")[0];
@@ -31,8 +30,8 @@ function drawOnCanvas(e) {
 
 window.onload = async function() {
 	//initialize
-	clearCanvas();
 	createArray();
+	clearCanvas();
 
 	//initialize canvas functions
 	canvas.addEventListener("mouseout", () => isDrawing = false);
@@ -48,33 +47,52 @@ window.onload = async function() {
 	model = await tf.loadLayersModel("model/model.json");
 }
 
+//initialize array elements
 function createArray() {
 	for(let i = 0; i < 10; i++) {
-		let height = probabilityArray[i] * 280;
-		container.innerHTML += `<div id="element${i}" class="array-element" style="width: 30px; height: ${height}px; transform: translateX(${window.innerWidth / 2 - 50 + i * 45}px);"><div class="number-label">${i}</div></div>`;;
+		container.innerHTML += `<div id="element${i}" class="array-element" style="width: 30px; height: 0px; transform: translateX(${window.innerWidth / 2 - 50 + i * 45}px);"><div class="number-label">${i}</div></div>`;;
 	}
+}
+
+//update probabilities
+function update(arr) {
+	//update propabilities
+	let maxIndex = 0;
+	let maxValue = 0;
+	for(let i = 0; i < 10; i++) {
+		document.getElementById(`element${i}`).style.setProperty("height", `${arr[i] * 280}px`);
+		document.getElementById(`element${i}`).style.setProperty("background", "tomato");
+		if(arr[i] > maxValue) {
+			maxValue = arr[i];
+			maxIndex = i;
+		}
+	}
+
+	//update color
+	document.getElementById(`element${maxIndex}`).style.setProperty("background", "green");
 }
 
 //function to clear canvas
 function clearCanvas() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	for(let i = 0; i < 10; i++) {
+		document.getElementById(`element${i}`).style.setProperty("height", "0px");
+		document.getElementById(`element${i}`).style.setProperty("background", "tomato");
+	}
 }
 
 //predict digit for drawing
 async function runRecognizer() {
 	let input = preprocessCanvas(ctx);
 
-	input.print();
-	console.log(input);
-
 	let rawResults = await model.predict(input).data();
 	let results = Array.from(rawResults);
 
-	console.log(results);
-
+	update(results);
 }
 
-//preprocessing the canvas drawing
+//preprocessing the canvas drawing into 28x28 tensor input
 function preprocessCanvas(img) {
 	let data = img.getImageData(0, 0, 280, 280);
 

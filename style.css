@@ -82,7 +82,7 @@ canvas {
 	left: 0;
 	bottom: calc(100% - 485px);
 	border-radius: 10px;
-	transition: all 0.5s ease;
+	transition: all 0.8s ease;
 }
 
 .number-label {
