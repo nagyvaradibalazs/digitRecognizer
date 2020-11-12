@@ -60,9 +60,14 @@ function clearCanvas() {
 }
 
 //predict digit for drawing
-function runRecognizer() {
+function async runRecognizer() {
 	let input = preprocessCanvas();
-	console.log(input);
+	
+	let rawResults = await model.predict(tensor).data();
+	let results = Array.from(rawResults);
+
+	console.log(results);
+
 }
 
 //preprocessing the canvas drawing
