@@ -62,7 +62,7 @@ function clearCanvas() {
 //predict digit for drawing
 async function runRecognizer() {
 	let input = preprocessCanvas();
-	//console.log(input.shape);
+	console.log(input.shape);
 	let rawResults = await model.predict(input).data();
 	let results = Array.from(rawResults);
 
@@ -73,7 +73,7 @@ async function runRecognizer() {
 
 //preprocessing the canvas drawing
 function preprocessCanvas() {
-	let tensor = tf.browser.fromPixels(canvas).resizeNearestNeighbor([28, 28]).mean(2).expandDims(2).toFloat();
+	let tensor = tf.browser.fromPixels(canvas).resizeNearestNeighbor([28, 28]).mean(2).expandDims().toFloat();
 	
 	//changing to black background and white drawing
 	return tensor.div(255.0).sub(1.0).mul(-1.0);
