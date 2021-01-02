@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-	<link rel="icon" href="icon.png">
+	<link rel="icon" href="style/icon.png">
 	<title>Handwritten Digit Recognizer</title>
 </head>
 <body>
@@ -16,8 +16,8 @@
 		<div class="left-side">
 			<canvas id="cv" width="280" height="280"></canvas>			
 			<div class="main-buttons">
-				<a class="clear-button" onclick="clearCanvas()">Clear</a>
-				<a class="go-button" onclick="runRecognizer()">Go</a>
+				<a class="clear-button">Clear</a>
+				<a class="go-button">Go</a>
 			</div>
 		</div>
 		<div class="container">
@@ -26,6 +26,6 @@
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-	<script src="script.js"></script>
+	<script src="script/script.js" type="module"></script>
 </body>
 </html>
