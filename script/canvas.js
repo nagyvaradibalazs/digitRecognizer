@@ -50,7 +50,7 @@ const preprocessCanvas = (img) => {
 		for(let j = 0; j < 28; j++) {
 			let d = avgData[j][i];
 			d = d / 255.0;
-			temp.push(d);
+			temp.push([d]);
 		}
 		resultData.push(temp);
 	}

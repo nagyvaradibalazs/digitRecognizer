@@ -34,17 +34,20 @@ label_test = keras.utils.to_categorical(label_test)
 
 #define the model
 model = keras.Sequential([
-  keras.layers.Flatten(input_shape=(28, 28)),     #layer 0 (input)
-  keras.layers.Dense(512, activation='relu'),     #layer 1 (hidden)
-  keras.layers.Dense(64, activation='relu'),      #layer 2 (hidden)
-  keras.layers.Dense(10, activation='softmax')    #layer 3 (output)
+  keras.layers.Conv2D(64, 4, activation='relu'),
+  keras.layers.MaxPool2D(2, 2),
+  keras.layers.Dropout(0.25),
+  keras.layers.Flatten(input_shape=(28, 28)),  
+  keras.layers.Dense(512, activation='relu'),
+  keras.layers.Dense(64, activation='relu'),
+  keras.layers.Dense(10, activation='softmax')
 ])
 
 #define compile methods
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 #training the model
-model.fit(data_train, label_train, epochs=4)
+model.fit(data_train, label_train, epochs=6, batch_size=64)
 
 #testing the model
 loss, acc = model.evaluate(data_test, label_test)
