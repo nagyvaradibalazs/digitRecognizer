@@ -16,6 +16,7 @@ const initCanvas = (canvas, ctxOriginal) => {
 	y = 0;
 
 	//init canvas functions
+	//for computer
 	canvas.addEventListener("mouseout", () => isDrawing = false);
 	canvas.addEventListener("mousedown", (e) => {
 		isDrawing = true;
@@ -24,6 +25,26 @@ const initCanvas = (canvas, ctxOriginal) => {
 	});
 	canvas.addEventListener("mousemove", drawOnCanvas);
 	canvas.addEventListener("mouseup", () => isDrawing = false);
+
+	//for mobile
+	canvas.addEventListener("touchleave", () => isDrawing = false);
+	canvas.addEventListener("touchstart", (e) => {
+		if(e.target == canvas) {
+			e.preventDefault();
+		}
+
+		isDrawing = true;
+		x = e.offsetX;
+		y = e.offsetY;
+	});
+	canvas.addEventListener("touchmove", (e) => {
+		if(e.target == canvas) {
+			e.preventDefault();
+		}
+		
+		drawOnCanvas
+	});
+	canvas.addEventListener("touchend", () => isDrawing = false);
 }
 
 const drawOnCanvas = (e) => {
