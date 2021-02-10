@@ -9,7 +9,7 @@ const initCanvas = (canvas, ctxOriginal) => {
 	ctx.lineJoin = "round";
 	ctx.lineCap = "round";
 	ctx.lineWidth = 10;
-	ctx.strokeStyle = "black";
+	ctx.strokeStyle = "red";
 
 	isDrawing = false;
 	x = 0;
@@ -41,7 +41,7 @@ const initCanvas = (canvas, ctxOriginal) => {
 		if(e.target == canvas) {
 			e.preventDefault();
 		}
-		
+
 		drawOnCanvas
 	});
 	canvas.addEventListener("touchend", () => isDrawing = false);
