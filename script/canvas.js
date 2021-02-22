@@ -1,7 +1,8 @@
-var cv = document.getElementById("cvimg");
+/*var cv = document.getElementById("cvimg");
 var ctxcv = cv.getContext("2d");
 var dt = ctxcv.getImageData(0, 0, 28, 28);
-var px = dt.data;
+var px = dt.data;*/
+
 const clearCanvas = (canvas, ctx) => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -19,7 +20,7 @@ const preprocessCanvas = (img) => {
 	for(let i = 3; i < 313600; i += 4) {
 		pxData.push(data.data[i]);
 	}
-
+	
 	let avg1Data = [];
 	for(let j = 0; j < 280; j++) {
 		let temp = [];
@@ -55,12 +56,11 @@ const preprocessCanvas = (img) => {
 			let d = avgData[j][i];
 			d = Math.min(1.0, d / 255.0);
 			temp.push([d]);
-			//test
-			px[4*(28*i+j)+3] = d * 255;
+			//px[4*(28*i+j)+3] = d * 255;
 		}
 		resultData.push(temp);
 	}
-	ctxcv.putImageData(dt, 0, 0);
+	//ctxcv.putImageData(dt, 0, 0);
 	return [resultData];
 };
 

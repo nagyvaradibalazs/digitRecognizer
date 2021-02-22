@@ -10,17 +10,16 @@
 <body>
 	<div class="title">
 		<h1>Handwritten Digit Recognizer</h1>
-		<p>Draw a digit on the canvas, then click Go for prediction. For the most accurate result, use the middle of the canvas!</p>
+		<p>Draw a digit on the canvas, then click Go for prediction. For the most accurate result, use the middle of the canvas and draw medium size digits!</p>
 	</div>
 	<div class="content">
 		<div class="left-side">
-			<canvas id="cv" width="280" height="280"></canvas>
-			<p id="ld-text">Loading model...</p>
-			<canvas id="cvimg" width="28" height="28"></canvas>			
+			<canvas id="cv" width="280" height="280"></canvas>		
 			<div class="main-buttons">
 				<a class="clear-button">Clear</a>
 				<a class="go-button">Go</a>
 			</div>
+			<p id="ld-text">Loading model...</p>
 		</div>
 		<div class="container">
 			<!-- elements by JS -->

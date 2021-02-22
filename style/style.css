@@ -93,7 +93,5 @@ canvas {
 }
 
 #ld-text {
-	position: relative;
-	left: 60px;
-	bottom: 150px;
+	transform: translate(60px, -280px);
 }
