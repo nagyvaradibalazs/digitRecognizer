@@ -17,6 +17,7 @@ window.onload = async function() {
 
 	//load trained model
 	model = await tf.loadLayersModel("model/model.json");
+	document.getElementById("ld-text").setAttribute("style", "display: none;");
 
 	//initialize canvas functions
 	drawer.initCanvas(canvas, ctx);

@@ -91,3 +91,9 @@ canvas {
 	left: 8px;
 	font-size: 24px;
 }
+
+#ld-text {
+	position: relative;
+	left: 60px;
+	bottom: 150px;
+}

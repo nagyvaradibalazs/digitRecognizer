@@ -37,7 +37,7 @@ model = keras.Sequential([
   keras.layers.Conv2D(64, 4, activation='relu'),
   keras.layers.MaxPool2D(2, 2),
   keras.layers.Dropout(0.25),
-  keras.layers.Flatten(input_shape=(28, 28)),  
+  keras.layers.Flatten(),  
   keras.layers.Dense(512, activation='relu'),
   keras.layers.Dense(64, activation='relu'),
   keras.layers.Dense(10, activation='softmax')
